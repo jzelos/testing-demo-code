@@ -7,14 +7,17 @@ namespace NUnitTests.AlertTests
 {
     public class AlertTestsWithMocks
     {
+        // Create mocks using Moq 
+        // There is a lot of code for a simple test compared to a pure function but
+        // in the real world, you would not have a 2 line method that does so little
+
         [Test]
         public void SendAlert()
-        {                       
+        {
+            // Arrange
             var fixture = new Fixture();
             var customer = fixture.Create<Customer>();
 
-            // Create mocks using Moq 
-            // There is a lot of code for a simple test compared to a pure function
             var customerRepository = new Mock<ICustomerRepository>();
             customerRepository.Setup(s => s.GetCustomer(customer.CustomerReference)).Returns(customer).Verifiable();
 
@@ -24,12 +27,12 @@ namespace NUnitTests.AlertTests
 
             var sut = new TestableAlert(smtpClient.Object, customerRepository.Object);
 
+            // Act
             var result = sut.SendAlert(customer.CustomerReference, message);
 
-            Assert.IsTrue(result);
-
-            // Here we are checking the parameters passed to the mocked methods match what we expect
-            Mock.VerifyAll(); 
+            // Assert
+            Assert.IsTrue(result);            
+            Mock.VerifyAll(); // Here we are checking the parameters passed to the mocked methods match what we expect
         }
     }
 }

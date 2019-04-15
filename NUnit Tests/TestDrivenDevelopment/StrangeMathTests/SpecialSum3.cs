@@ -16,10 +16,13 @@ namespace NUnitTests.StrangeMathTests
         [TestCase(7, 7, 14)]
         public void APlusB_Equals_Expected(int a, int b, int expected)
         {
+            // Arrange
             var sut = new StrangeMath();
 
+            // Act
             var actual = sut.SpecialSum(a, b);
 
+            // Assert
             Assert.AreEqual(expected, actual);
         }
 

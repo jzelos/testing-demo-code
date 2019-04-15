@@ -5,13 +5,13 @@ using UnitTestDemo;
 namespace NUnitTests.AlertTests
 {
     public class AlertTestsWithFakes
-    {
-
+    {        
         class FakeCustomerRepository : ICustomerRepository
         {
+            // This is a stub, its returning fake data without caring about the customeReference parameter
             public Customer GetCustomer(string customerReference)
             {
-                return new Customer() { Email = "jason.zelos@flagship-group.co.uk" }; // This is a stub, its returning fake data without caring about the parameter
+                return new Customer() { Email = "jason.zelos@flagship-group.co.uk" }; 
             }
         }
 
@@ -26,13 +26,17 @@ namespace NUnitTests.AlertTests
         [Test]
         public void SendAlert()
         {
+            // Arrange
             var sut = new TestableAlert(new FakeSmtpClient(), new FakeCustomerRepository());
 
+            // Act
             var result = sut.SendAlert("someReference", "A message");
 
-            // We know our fake SendMail methods return value was bubbled up, but what about the parameters in the calls to the fake objects?
+            // Assert
+            Assert.IsTrue(result);
 
-            Assert.IsTrue(result); 
+            // We know our fake SendMail methods return value was bubbled up, 
+            // but what about the parameters in the calls to the fake objects?
         }
     }
 }

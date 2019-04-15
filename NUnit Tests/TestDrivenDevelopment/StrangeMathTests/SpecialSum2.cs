@@ -12,10 +12,13 @@ namespace NUnitTests.StrangeMathTests
         [Test]
         public void SixPlusSeven_Equals_Fourteen()
         {
+            // Arrange
             var sut = new StrangeMath();
 
+            // Act
             var actual = sut.SpecialSum(6, 7);
 
+            // Assert
             Assert.AreEqual(14, actual);
         }
 
@@ -24,10 +27,13 @@ namespace NUnitTests.StrangeMathTests
         [Test]
         public void SevenPlusSeven_Equals_Fourteen()
         {
+            // Arrange
             var sut = new StrangeMath();
 
+            // Act
             var actual = sut.SpecialSum(7, 7);
 
+            // Assert
             Assert.AreEqual(14, actual);
         }
 

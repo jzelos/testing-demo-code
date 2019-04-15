@@ -5,4 +5,8 @@
     <RootNamespace>UnitTestDemo</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.2" />
+  </ItemGroup>
+
 </Project>
