@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
+    <PackageReference Include="NUnit" Version="3.11.0" />
+    <PackageReference Include="NUnit.ConsoleRunner" Version="3.10.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
+    <PackageReference Include="Selenium.Support" Version="3.141.0" />
+    <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="73.0.3683.68" />
+    <PackageReference Include="SpecFlow" Version="3.0.199" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.199" />
+    <PackageReference Include="SpecRun.SpecFlow" Version="3.0.329" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="MyTests.feature.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MyTests.feature</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="MyTests.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>MyTests.feature.cs</LastGenOutput>
+    </SpecFlowFeatureFiles>
+  </ItemGroup>
+
+</Project>
