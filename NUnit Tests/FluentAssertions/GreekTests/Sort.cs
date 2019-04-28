@@ -11,7 +11,7 @@ namespace NUnitTests.GreekTests
         // https://fluentassertions.com/documentation/
 
         [Test]
-        public void ReturnsWordsInAlphabeticalOrder()
+        public void ReturnsWordsInAlphabeticalOrder1()
         {
             // Arrange
             var sut = new Greek();
@@ -20,18 +20,43 @@ namespace NUnitTests.GreekTests
             var actual = sut.Sort(new List<string> { "Beta", "Alpha" });
 
             // Assert
-            var expected = new List<string> { "Alpha", "Beta" };
 
             // We could assert individually, but this would rapidly get annoying
-            Assert.AreEqual(expected[0], actual[0]);
-            Assert.AreEqual(expected[1], actual[1]);
+            Assert.AreEqual("Alpha", actual[0]);
+            Assert.AreEqual("Beta", actual[1]);
+        }
+
+        [Test]
+        public void ReturnsWordsInAlphabeticalOrder2()
+        {
+            // Arrange
+            var sut = new Greek();
+
+            // Act
+            var actual = sut.Sort(new List<string> { "Beta", "Alpha" });
+
+            // Assert
 
             // maybe we should write a loop, but what happens if "actual" has fewer items 
             // than "expected", or even worse, "actual" has more?
+            var expected = new List<string> { "Alpha", "Beta" };
             for (int i = 0; i < expected.Count; i++)
-                Assert.AreEqual(expected[i], actual[i]); 
-            
+                Assert.AreEqual(expected[i], actual[i]);
+        }
+
+        [Test]
+        public void ReturnsWordsInAlphabeticalOrder3()
+        {
+            // Arrange
+            var sut = new Greek();
+
+            // Act
+            var actual = sut.Sort(new List<string> { "Beta", "Alpha" });
+
+            // Assert
+
             // Fluent assertion is both more robust and much more readable.
+            var expected = new List<string> { "Alpha", "Beta" };
             actual.Should().BeEquivalentTo(expected, options => options.WithStrictOrdering());
         }
     }

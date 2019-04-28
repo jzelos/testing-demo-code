@@ -7,10 +7,11 @@ namespace NUnitTests.AlertTests
 {
     public class AlertTestsWithMocks
     {
-        // https://github.com/moq/moq4
         // Create mocks using Moq 
         // There is a lot of code for a simple test compared to a pure function but
         // in the real world, you would not have a 2 line method that does so little
+
+        // https://github.com/moq/moq4
 
         [Test]
         public void SendAlert()
@@ -32,8 +33,10 @@ namespace NUnitTests.AlertTests
             var result = sut.SendAlert(customer.CustomerReference, message);
 
             // Assert
-            Assert.IsTrue(result);            
-            Mock.VerifyAll(); // Here we are checking the parameters passed to the mocked methods match what we expect
+            Assert.IsTrue(result);
+            customerRepository.VerifyAll();
+            // or without marking the Stub as Verifiable
+            customerRepository.Verify(s => s.GetCustomer(customer.CustomerReference), Times.Once());
         }
     }
 }
